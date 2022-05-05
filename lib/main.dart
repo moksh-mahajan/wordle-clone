@@ -36,7 +36,9 @@ class _HomePageState extends State<HomePage> {
   var history = []; // Simple strings
   var isCorrect = false;
 
-  void formatGuess() {}
+  void formatGuess() {
+    print('Formatting the guess - $currentGuess');
+  }
 
   void addNewGuess() {}
 
@@ -63,7 +65,27 @@ class _HomePageState extends State<HomePage> {
       onKey: (event) {
         // print(event);
         if (event is RawKeyUpEvent) {
-          print(event.data.keyLabel);
+          if (event.logicalKey == LogicalKeyboardKey.enter) {
+            // only add guess if turn is less than 5
+            if (turn > 5) {
+              print('You used all your guesses!');
+              return;
+            }
+
+            // do not allow duplicate words
+            if (history.contains(currentGuess)) {
+              print('You already tried that word!');
+              return;
+            }
+
+            // check word is 5 chars long
+            if (currentGuess.length < 5) {
+              print('Word must be 5 chars long!');
+              return;
+            }
+
+            formatGuess();
+          }
 
           if (event.logicalKey == LogicalKeyboardKey.backspace &&
               currentGuess.isNotEmpty) {
