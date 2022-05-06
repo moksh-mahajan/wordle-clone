@@ -27,7 +27,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var solution;
+  var solution = 'moksh';
 
   // States
   var turn = 0;
@@ -36,8 +36,34 @@ class _HomePageState extends State<HomePage> {
   var history = []; // Simple strings
   var isCorrect = false;
 
-  void formatGuess() {
-    print('Formatting the guess - $currentGuess');
+  List<Map<String, dynamic>> formatGuess() {
+    final solutionArray =
+        solution.runes.map((c) => String.fromCharCode(c)).toList();
+    final formattedGuess = currentGuess.runes
+        .map((c) => {
+              'color': Colors.grey,
+              'key': String.fromCharCode(c),
+            })
+        .toList();
+
+    // find any green letters
+    formattedGuess.asMap().forEach((index, letter) {
+      if (letter['key'] == solutionArray[index]) {
+        formattedGuess[index]['color'] = Colors.green;
+        solutionArray[index] = '';
+      }
+    });
+
+    // find any yellow letters
+    formattedGuess.asMap().forEach((index, letter) {
+      if (solutionArray.contains(letter['key']) &&
+          letter['color'] != Colors.green) {
+        formattedGuess[index]['color'] = Colors.yellow;
+        solutionArray[solutionArray.indexOf(letter['key'] as String)] = '';
+      }
+    });
+
+    return formattedGuess;
   }
 
   void addNewGuess() {}
@@ -84,7 +110,8 @@ class _HomePageState extends State<HomePage> {
               return;
             }
 
-            formatGuess();
+            final formatted = formatGuess();
+            print(formatted);
           }
 
           if (event.logicalKey == LogicalKeyboardKey.backspace &&
