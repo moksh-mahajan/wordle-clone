@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
   // States
   var turn = 0;
   var currentGuess = '';
-  var guesses = []; // Formatted Guesses
+  final guesses = []; // Formatted Guesses
   var history = []; // Simple strings
   var isCorrect = false;
 
@@ -66,7 +66,20 @@ class _HomePageState extends State<HomePage> {
     return formattedGuess;
   }
 
-  void addNewGuess() {}
+  void addNewGuess(List formatted) {
+    if (currentGuess == solution) {
+      setState(() {
+        isCorrect = true;
+      });
+    }
+
+    setState(() {
+      guesses.add(formatted);
+      history.add(currentGuess);
+      turn++;
+      currentGuess = '';
+    });
+  }
 
   void handleKeyup() {}
 
@@ -111,7 +124,7 @@ class _HomePageState extends State<HomePage> {
             }
 
             final formatted = formatGuess();
-            print(formatted);
+            addNewGuess(formatted);
           }
 
           if (event.logicalKey == LogicalKeyboardKey.backspace &&
@@ -147,7 +160,11 @@ class _HomePageState extends State<HomePage> {
           Divider(
             height: 40,
           ),
-          Text('Current guess - $currentGuess')
+          Text('Solution - $solution'),
+          Text('Current guess - $currentGuess'),
+          Text('Turn: $turn'),
+          Text('history: $history'),
+          Text('Guesses: $guesses')
         ]),
       ),
     );
