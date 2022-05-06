@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:wordle/grid.dart';
 
 void main() {
   runApp(const MyApp());
@@ -162,9 +163,11 @@ class _HomePageState extends State<HomePage> {
           ),
           Text('Solution - $solution'),
           Text('Current guess - $currentGuess'),
-          Text('Turn: $turn'),
-          Text('history: $history'),
-          Text('Guesses: $guesses')
+          Grid(
+            currentGuess: currentGuess,
+            turn: turn,
+            guesses: guesses,
+          ),
         ]),
       ),
     );
