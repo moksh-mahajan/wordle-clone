@@ -33,7 +33,14 @@ class _HomePageState extends State<HomePage> {
   // States
   var turn = 0;
   var currentGuess = '';
-  final guesses = []; // Formatted Guesses
+  final List guesses = [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ]; // Formatted Guesses
   var history = []; // Simple strings
   var isCorrect = false;
 
@@ -75,7 +82,7 @@ class _HomePageState extends State<HomePage> {
     }
 
     setState(() {
-      guesses.add(formatted);
+      guesses[turn] = formatted;
       history.add(currentGuess);
       turn++;
       currentGuess = '';

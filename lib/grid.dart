@@ -13,22 +13,42 @@ class Grid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: const [
-      GridRow(),
-      GridRow(),
-      GridRow(),
-      GridRow(),
-      GridRow(),
-      GridRow(),
-    ]);
+    return Column(
+        children: guesses
+            .map((e) => GridRow(
+                  guess: e,
+                ))
+            .toList());
   }
 }
 
 class GridRow extends StatelessWidget {
-  const GridRow({Key? key}) : super(key: key);
+  final List? guess;
+
+  const GridRow({Key? key, this.guess}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    if (guess != null) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: guess!
+            .map((e) => Container(
+                  height: 60,
+                  width: 60,
+                  alignment: Alignment.center,
+                  child: Text(
+                    e['key'].toUpperCase(),
+                    style: Theme.of(context).textTheme.displaySmall,
+                  ),
+                  margin: EdgeInsets.all(4),
+                  decoration: BoxDecoration(
+                      color: e['color'],
+                      border: Border.all(color: e['color'])),
+                ))
+            .toList(),
+      );
+    }
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
