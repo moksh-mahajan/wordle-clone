@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../widgets/grid.dart';
 
@@ -144,7 +145,16 @@ class _GuessWordPageState extends State<GuessWordPage> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0.0,
-          title: Text('Wordle'),
+          title: Text(
+            'Wordle',
+            style: GoogleFonts.pacifico(
+              textStyle: TextStyle(
+                color: Colors.blueAccent,
+                fontSize: 30,
+                fontWeight: FontWeight.bold
+              ),
+            ),
+          ),
           foregroundColor: Colors.black,
         ),
         body: Column(children: [
