@@ -143,23 +143,39 @@ class _GuessWordPageState extends State<GuessWordPage> {
       focusNode: FocusNode(),
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
           title: Text(
             'Wordle',
             style: GoogleFonts.pacifico(
-              textStyle: TextStyle(
-                color: Colors.blueAccent,
-                fontSize: 30,
-                fontWeight: FontWeight.bold
-              ),
+              textStyle:
+                  const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
             ),
           ),
-          foregroundColor: Colors.black,
+          leading: Row(children: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.menu),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.help_outline),
+            )
+          ]),
+          leadingWidth: 80,
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.leaderboard_outlined),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.settings),
+            )
+          ],
         ),
         body: Column(children: [
-          Divider(
-            height: 40,
+          const Divider(
+            height: 0,
+            color: Colors.grey,
           ),
           Text('Solution - $solution'),
           Text('Current guess - $currentGuess'),
