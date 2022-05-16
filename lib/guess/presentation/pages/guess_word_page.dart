@@ -173,12 +173,8 @@ class _GuessWordPageState extends State<GuessWordPage> {
           ],
         ),
         body: Column(children: [
-          const Divider(
-            height: 0,
-            color: Colors.grey,
-          ),
-          Text('Solution - $solution'),
-          Text('Current guess - $currentGuess'),
+          const Divider(height: 0, color: Colors.grey),
+          const SizedBox(height: 24,),
           Grid(
             currentGuess: currentGuess,
             turn: turn,
