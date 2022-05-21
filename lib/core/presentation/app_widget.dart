@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../guess/presentation/pages/guess_word_page.dart';
 
 class WordleApp extends StatelessWidget {
-  const WordleApp({Key? key}) : super(key: key);
+  WordleApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routeInformationParser: _router.routeInformationParser,
+      routerDelegate: _router.routerDelegate,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
@@ -17,7 +20,16 @@ class WordleApp extends StatelessWidget {
           foregroundColor: Colors.black,
         ),
       ),
-      home: GuessWordPage(),
     );
   }
+
+  final _router = GoRouter(urlPathStrategy: UrlPathStrategy.path, routes: [
+    GoRoute(
+      path: '/',
+      pageBuilder: (context, state) => MaterialPage(
+        key: state.pageKey,
+        child: const GuessWordPage(),
+      ),
+    )
+  ]);
 }
