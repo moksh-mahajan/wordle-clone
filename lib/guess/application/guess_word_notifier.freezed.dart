@@ -19,7 +19,7 @@ mixin _$GuessWordState {
   String get solution => throw _privateConstructorUsedError;
   int get turn => throw _privateConstructorUsedError;
   String get currentGuess => throw _privateConstructorUsedError;
-  List<dynamic> get guesses => throw _privateConstructorUsedError;
+  List<List<Letter>> get guesses => throw _privateConstructorUsedError;
   List<String> get history => throw _privateConstructorUsedError;
   bool get isCorrect => throw _privateConstructorUsedError;
 
@@ -37,7 +37,7 @@ abstract class $GuessWordStateCopyWith<$Res> {
       {String solution,
       int turn,
       String currentGuess,
-      List<dynamic> guesses,
+      List<List<Letter>> guesses,
       List<String> history,
       bool isCorrect});
 }
@@ -76,7 +76,7 @@ class _$GuessWordStateCopyWithImpl<$Res>
       guesses: guesses == freezed
           ? _value.guesses
           : guesses // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<List<Letter>>,
       history: history == freezed
           ? _value.history
           : history // ignore: cast_nullable_to_non_nullable
@@ -100,7 +100,7 @@ abstract class _$$_GuessWordStateCopyWith<$Res>
       {String solution,
       int turn,
       String currentGuess,
-      List<dynamic> guesses,
+      List<List<Letter>> guesses,
       List<String> history,
       bool isCorrect});
 }
@@ -141,7 +141,7 @@ class __$$_GuessWordStateCopyWithImpl<$Res>
       guesses: guesses == freezed
           ? _value._guesses
           : guesses // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<List<Letter>>,
       history: history == freezed
           ? _value._history
           : history // ignore: cast_nullable_to_non_nullable
@@ -161,7 +161,7 @@ class _$_GuessWordState extends _GuessWordState {
       {required this.solution,
       required this.turn,
       required this.currentGuess,
-      required final List<dynamic> guesses,
+      required final List<List<Letter>> guesses,
       required final List<String> history,
       required this.isCorrect})
       : _guesses = guesses,
@@ -174,9 +174,9 @@ class _$_GuessWordState extends _GuessWordState {
   final int turn;
   @override
   final String currentGuess;
-  final List<dynamic> _guesses;
+  final List<List<Letter>> _guesses;
   @override
-  List<dynamic> get guesses {
+  List<List<Letter>> get guesses {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_guesses);
   }
@@ -231,7 +231,7 @@ abstract class _GuessWordState extends GuessWordState {
       {required final String solution,
       required final int turn,
       required final String currentGuess,
-      required final List<dynamic> guesses,
+      required final List<List<Letter>> guesses,
       required final List<String> history,
       required final bool isCorrect}) = _$_GuessWordState;
   const _GuessWordState._() : super._();
@@ -243,7 +243,7 @@ abstract class _GuessWordState extends GuessWordState {
   @override
   String get currentGuess => throw _privateConstructorUsedError;
   @override
-  List<dynamic> get guesses => throw _privateConstructorUsedError;
+  List<List<Letter>> get guesses => throw _privateConstructorUsedError;
   @override
   List<String> get history => throw _privateConstructorUsedError;
   @override
